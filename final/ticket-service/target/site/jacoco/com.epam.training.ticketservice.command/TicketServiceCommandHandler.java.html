@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TicketServiceCommandHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ticket-service</a> &gt; <a href="index.source.html" class="el_package">com.epam.training.ticketservice.command</a> &gt; <span class="el_source">TicketServiceCommandHandler.java</span></div><h1>TicketServiceCommandHandler.java</h1><pre class="source lang-java linenums">package com.epam.training.ticketservice.command;
+
+
+
+import com.epam.training.ticketservice.movie.MovieService;
+import com.epam.training.ticketservice.room.RoomService;
+import com.epam.training.ticketservice.screening.ScreeningService;
+import com.epam.training.ticketservice.user.UserService;
+import lombok.AllArgsConstructor;
+import org.springframework.shell.Availability;
+import org.springframework.shell.standard.ShellComponent;
+import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellMethodAvailability;
+
+
+@ShellComponent()
+<span class="nc" id="L17">@AllArgsConstructor</span>
+public class TicketServiceCommandHandler {
+
+
+    private final UserService userService;
+    private final MovieService movieService;
+
+    private final RoomService roomService;
+
+    private final ScreeningService screeningService;
+
+    @ShellMethod(value = &quot;Create movie&quot;, key = &quot;create movie&quot;)
+    @ShellMethodAvailability(value = &quot;isAdminLoggedIn&quot;)
+    public void createMovie(String name,String type,Integer length){
+<span class="nc" id="L31">        movieService.createMovie(name,type,length);</span>
+<span class="nc" id="L32">    }</span>
+
+    @ShellMethod(value = &quot;Update movie&quot;, key = &quot;update movie&quot;)
+    @ShellMethodAvailability(value = &quot;isAdminLoggedIn&quot;)
+    public void updateMovie(String name,String type,Integer length){
+<span class="nc" id="L37">        movieService.updateMovie(name,type,length);</span>
+<span class="nc" id="L38">    }</span>
+
+    @ShellMethod(value = &quot;Delete movie&quot;, key = &quot;delete movie&quot;)
+    @ShellMethodAvailability(value = &quot;isAdminLoggedIn&quot;)
+    public void updateMovie(String name){
+<span class="nc" id="L43">        movieService.deleteMovie(name);</span>
+<span class="nc" id="L44">    }</span>
+
+    @ShellMethod(value = &quot;List movies&quot;, key = &quot;list movies&quot;)
+    public void listMovies(){
+<span class="nc" id="L48">        movieService.listMovies();</span>
+<span class="nc" id="L49">    }</span>
+
+    @ShellMethod(value = &quot;Sign in&quot;, key = &quot;sign in privileged&quot;)
+    public void logIn(String name,String password){
+<span class="nc" id="L53">         userService.login(name,password);</span>
+<span class="nc" id="L54">    }</span>
+
+    @ShellMethod(value = &quot;Sign out&quot;, key = &quot;sign out&quot;)
+    public void signOut(){
+<span class="nc" id="L58">        userService.signOut();</span>
+<span class="nc" id="L59">    }</span>
+
+    @ShellMethod(value = &quot;Describe account&quot;, key = &quot;describe account&quot;)
+    public String describeAccount(){
+<span class="nc" id="L63">        return userService.describeAccount();</span>
+    }
+
+    @ShellMethod(value = &quot;Create room&quot;, key = &quot;create room&quot;)
+    @ShellMethodAvailability(value = &quot;isAdminLoggedIn&quot;)
+    public void createRoom(String name,Integer numberOfRows,Integer numberOfColumns){
+<span class="nc" id="L69">        roomService.createRoom(name,</span>
+                numberOfRows,
+                numberOfColumns);
+<span class="nc" id="L72">    }</span>
+
+    @ShellMethod(value = &quot;Update room&quot;, key = &quot;update room&quot;)
+    @ShellMethodAvailability(value = &quot;isAdminLoggedIn&quot;)
+    public void updateRoom(String name,Integer numberOfRows,Integer numberOfColumns){
+<span class="nc" id="L77">        roomService.updateRoom(name,</span>
+                numberOfRows,
+                numberOfColumns);
+<span class="nc" id="L80">    }</span>
+
+    @ShellMethod(value = &quot;Delete room&quot;, key = &quot;delete room&quot;)
+    @ShellMethodAvailability(value = &quot;isAdminLoggedIn&quot;)
+    public void deleteRoom(String name){
+<span class="nc" id="L85">        roomService.deleteRoom(name);</span>
+<span class="nc" id="L86">    }</span>
+
+    @ShellMethod(value = &quot;List rooms&quot;, key = &quot;list rooms&quot;)
+    public void listRooms(){
+<span class="nc" id="L90">        roomService.listRooms();</span>
+<span class="nc" id="L91">    }</span>
+
+    @ShellMethod(value = &quot;Create screening&quot;, key = &quot;create screening&quot;)
+    @ShellMethodAvailability(value = &quot;isAdminLoggedIn&quot;)
+    public void createScreening(String filmName, String roomName, String start){
+<span class="nc" id="L96">        screeningService.createScreening(filmName,roomName,start);</span>
+<span class="nc" id="L97">    }</span>
+
+    @ShellMethod(value = &quot;List screenings&quot;, key = &quot;list screenings&quot;)
+    public void listScreenings(){
+<span class="nc" id="L101">        screeningService.listScreenings();</span>
+<span class="nc" id="L102">    }</span>
+
+
+
+
+
+
+
+    private Availability isAdminLoggedIn(){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        if(userService.isAdminLoggedIn()){</span>
+<span class="nc" id="L112">             return Availability.available();</span>
+        }else {
+<span class="nc" id="L114">            return Availability.unavailable(&quot;You are not logged in as admin&quot;);</span>
+        }
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

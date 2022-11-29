@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScreeningService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ticket-service</a> &gt; <a href="index.source.html" class="el_package">com.epam.training.ticketservice.screening</a> &gt; <span class="el_source">ScreeningService.java</span></div><h1>ScreeningService.java</h1><pre class="source lang-java linenums">package com.epam.training.ticketservice.screening;
+
+import com.epam.training.ticketservice.movie.Movie;
+import com.epam.training.ticketservice.movie.MovieRepository;
+import com.epam.training.ticketservice.room.Room;
+import com.epam.training.ticketservice.room.RoomRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+@Service
+<span class="nc" id="L14">@AllArgsConstructor</span>
+public class ScreeningService {
+
+    private final ScreeningRepository screeningRepository;
+    private final MovieRepository movieRepository;
+    private final RoomRepository roomRepository;
+
+
+    public void createScreening(String movieName, String roomName, String start){
+<span class="nc bnc" id="L23" title="All 4 branches missed.">        if(movieRepository.existsById(movieName) &amp;&amp; roomRepository.existsById(roomName)){</span>
+<span class="nc" id="L24">            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm&quot;);</span>
+<span class="nc" id="L25">            screeningRepository.save(new Screening(movieName,roomName,LocalDateTime.parse(start,formatter)));</span>
+<span class="nc" id="L26">        }else {</span>
+<span class="nc" id="L27">            System.out.println(&quot;No movie or room found&quot;);</span>
+        }
+
+<span class="nc" id="L30">    }</span>
+
+    public void listScreenings(){
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        if(screeningRepository.findAll().isEmpty()){</span>
+<span class="nc" id="L34">            System.out.println(&quot;There are no screenings&quot;);</span>
+        }else {
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            for(var screening: screeningRepository.findAll()){</span>
+<span class="nc" id="L37">                Movie movie = movieRepository.findById(screening.getFilmName()).get();</span>
+<span class="nc" id="L38">                Room room = roomRepository.findById(screening.getRoomName()).get();</span>
+
+<span class="nc" id="L40">                String text = movie.getName() + &quot; (&quot; + movie.getType() +&quot;, &quot; + movie.getLength() +&quot; minutes), screened in room &quot; + room.getName() +&quot;, at &quot; +</span>
+<span class="nc" id="L41">                        DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm&quot;).format(screening.getStart());</span>
+<span class="nc" id="L42">                System.out.println(text);</span>
+<span class="nc" id="L43">            }</span>
+        }
+<span class="nc" id="L45">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

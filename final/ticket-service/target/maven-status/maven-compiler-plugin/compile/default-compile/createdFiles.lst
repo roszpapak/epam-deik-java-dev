@@ -1,0 +1,15 @@
+com\epam\training\ticketservice\room\Room.class
+com\epam\training\ticketservice\screening\ScreeningService.class
+com\epam\training\ticketservice\user\User.class
+com\epam\training\ticketservice\movie\MovieRepository.class
+com\epam\training\ticketservice\screening\ScreeningRepository.class
+com\epam\training\ticketservice\user\UserRepository.class
+com\epam\training\ticketservice\command\TicketServiceCommandHandler.class
+com\epam\training\ticketservice\screening\Screening.class
+com\epam\training\ticketservice\command\TicketServiceCommandPrompt.class
+com\epam\training\ticketservice\room\RoomService.class
+com\epam\training\ticketservice\user\UserService.class
+com\epam\training\ticketservice\movie\Movie.class
+com\epam\training\ticketservice\movie\MovieService.class
+com\epam\training\Application.class
+com\epam\training\ticketservice\room\RoomRepository.class
