@@ -1,1 +1,6 @@
-ServiceTest.class
+UserServiceTest.class
+RoomServiceTest.class
+ScreeningServiceTest.class
+TicketServiceCommandPromptTest.class
+MovieServiceTest.class
+TicketServiceCommandHandlerTest.class

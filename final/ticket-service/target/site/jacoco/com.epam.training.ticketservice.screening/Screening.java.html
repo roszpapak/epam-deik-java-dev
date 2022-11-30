@@ -16,24 +16,24 @@ import java.time.LocalDateTime;
 @Entity
 <span class="nc" id="L17">@NoArgsConstructor</span>
 <span class="nc" id="L18">@AllArgsConstructor</span>
-<span class="nc bnc" id="L19" title="All 38 branches missed.">@Data</span>
+<span class="pc bpc" id="L19" title="27 of 38 branches missed.">@Data</span>
 public class Screening {
 
     @Id
     @GeneratedValue
-<span class="nc" id="L24">    private Long id;</span>
-<span class="nc" id="L25">    private String filmName;</span>
-<span class="nc" id="L26">    private String roomName;</span>
+<span class="fc" id="L24">    private Long id;</span>
+<span class="fc" id="L25">    private String filmName;</span>
+<span class="fc" id="L26">    private String roomName;</span>
 
     @DateTimeFormat(pattern = &quot;YYYY-MM-DD hh:mm&quot;)
-<span class="nc" id="L29">    private LocalDateTime start;</span>
+<span class="fc" id="L29">    private LocalDateTime start;</span>
 
 
-<span class="nc" id="L32">    public Screening(String filmName, String roomName, LocalDateTime start) {</span>
-<span class="nc" id="L33">        this.filmName = filmName;</span>
-<span class="nc" id="L34">        this.roomName = roomName;</span>
-<span class="nc" id="L35">        this.start = start;</span>
-<span class="nc" id="L36">    }</span>
+<span class="fc" id="L32">    public Screening(String filmName, String roomName, LocalDateTime start) {</span>
+<span class="fc" id="L33">        this.filmName = filmName;</span>
+<span class="fc" id="L34">        this.roomName = roomName;</span>
+<span class="fc" id="L35">        this.start = start;</span>
+<span class="fc" id="L36">    }</span>
 
 
 
