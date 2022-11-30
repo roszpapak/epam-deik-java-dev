@@ -9,23 +9,24 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public void login(String name, String password) {
+    public String login(String name, String password) {
         if (name.equals("admin") && password.equals("admin")) {
+
             userRepository.save(new User(name, password));
-        } else System.out.println("Login failed due to incorrect credentials");
+            return "Signed in with privileged account 'admin'";
+        } else return "Login failed due to incorrect credentials";
     }
 
     public void signOut() {
         if (userRepository.findByNameAndPassword("admin", "admin").isPresent()) {
             userRepository.delete(userRepository.findByNameAndPassword("admin", "admin").get());
-        }
+        } else System.out.println("You are not signed in");
     }
 
 
     public String describeAccount() {
-        System.out.println(userRepository.findByNameAndPassword("admin", "admin"));
         if (userRepository.findByNameAndPassword("admin", "admin").isPresent()) {
-            return "Signed in with privileged account admin";
+            return "Signed in with privileged account 'admin'";
         } else return "You are not signed in";
     }
 

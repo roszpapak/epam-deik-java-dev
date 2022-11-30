@@ -35,10 +35,17 @@ public class RoomService {
         }
     }
 
-    public void listRooms() {
-        for (var room : getRooms()) {
-            System.out.println(room);
+    public String listRooms() {
+        if (getRooms().isEmpty()) {
+            return "There are no rooms at the moment";
+        } else {
+            String s = "";
+            for (var room : getRooms()) {
+                s += room.toString() + "\n";
+            }
+            return s;
         }
+
     }
 
     public List<Room> getRooms() {

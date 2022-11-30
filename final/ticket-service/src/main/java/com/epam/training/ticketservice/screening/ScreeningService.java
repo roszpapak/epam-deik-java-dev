@@ -7,6 +7,7 @@ import com.epam.training.ticketservice.room.RoomRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -21,29 +22,86 @@ public class ScreeningService {
 
     public void createScreening(Screening screening) {
         if (movieRepository.existsById(screening.getFilmName()) && roomRepository.existsById(screening.getRoomName())) {
-            screeningRepository.save(screening);
+
+            List<Screening> screeningList = screeningRepository.findByRoomName(screening.getRoomName());
+            if (isOverLapping(screeningList, screening)) {
+                System.out.println("There is an overlapping screening");
+            } else if (isInBreak(screeningList, screening)) {
+                System.out.println("This would start in the break period after another screening in this room");
+            } else {
+                screeningRepository.save(screening);
+            }
+
         } else {
             throw new IllegalArgumentException();
         }
 
     }
 
+    private boolean isInBreak(List<Screening> screeningList, Screening screening) {
+        boolean isInBreak = false;
+        int screeningLength = movieRepository.findById(screening.getFilmName()).get().getLength();
+        LocalDateTime screeningStart = screening.getStart();
+
+        for (var actual : screeningList) {
+            int actualLength = movieRepository.findById(actual.getFilmName()).get().getLength();
+            LocalDateTime actualEnd = actual.getStart().plusMinutes(actualLength);
+            if (screeningStart.isAfter(actualEnd) && screeningStart.isBefore(actualEnd.plusMinutes(10))) {
+                isInBreak = true;
+            }
+
+        }
+        return isInBreak;
+
+    }
+
+    public boolean isOverLapping(List<Screening> screeningList, Screening screening) {
+        boolean isOverLapping = false;
+        int screeningLength = movieRepository.findById(screening.getFilmName()).get().getLength();
+        LocalDateTime screeningStart = screening.getStart();
+        LocalDateTime screeningEnd = screening.getStart().plusMinutes(screeningLength);
+        for (var actual : screeningList) {
+            int actualLength = movieRepository.findById(actual.getFilmName()).get().getLength();
+            LocalDateTime actualStart = actual.getStart();
+            LocalDateTime actualEnd = actual.getStart().plusMinutes(actualLength);
+
+            if (screeningEnd.isAfter(actualStart) && screeningEnd.isBefore(actualEnd) ||
+                    screeningStart.isAfter(actualStart) && screeningEnd.isBefore(actualEnd) ||
+                    screeningStart.isAfter(actualStart) && screeningStart.isBefore(actualEnd) ||
+                    screeningStart.isBefore(actualStart) && screeningEnd.isAfter(actualEnd)
+            ) {
+                isOverLapping = true;
+            }
+        }
+        return isOverLapping;
+    }
+
     public List<Screening> getScreenings() {
         return screeningRepository.findAll();
     }
 
-    public void listScreenings() {
+    public String listScreenings() {
         if (getScreenings().isEmpty()) {
-            System.out.println("There are no screenings");
+            return ("There are no screenings");
         } else {
+            String s = "";
             for (var screening : getScreenings()) {
                 Movie movie = movieRepository.findById(screening.getFilmName()).get();
                 Room room = roomRepository.findById(screening.getRoomName()).get();
 
                 String text = movie.getName() + " (" + movie.getType() + ", " + movie.getLength() + " minutes), screened in room " + room.getName() + ", at " +
                         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(screening.getStart());
-                System.out.println(text);
+                s += text + "\n";
             }
+            return s;
         }
+    }
+
+    public void deleteScreening(Screening screening) {
+        if (screeningRepository.findByFilmNameAndRoomNameAndStart(screening.getFilmName(), screening.getRoomName(), screening.getStart()).isPresent()) {
+            Long id = screeningRepository.findByFilmNameAndRoomNameAndStart(screening.getFilmName(), screening.getRoomName(), screening.getStart()).get().getId();
+            screeningRepository.deleteById(id);
+        } else System.out.println("Screening not found");
+
     }
 }

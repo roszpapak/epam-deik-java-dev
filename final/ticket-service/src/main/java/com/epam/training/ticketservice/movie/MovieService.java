@@ -23,13 +23,15 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
-    public void listMovies() {
+    public String listMovies() {
         if (getMovies().isEmpty()) {
-            System.out.println("There are no movies at the moment");
+            return ("There are no movies at the moment");
         } else {
+            String s = "";
             for (var film : getMovies()) {
-                System.out.println(film);
+                s += film.toString() + "\n";
             }
+            return s;
         }
     }
 

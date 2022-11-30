@@ -49,13 +49,13 @@ public class TicketServiceCommandHandler {
     }
 
     @ShellMethod(value = "List movies", key = "list movies")
-    public void listMovies() {
-        movieService.listMovies();
+    public String listMovies() {
+        return movieService.listMovies();
     }
 
     @ShellMethod(value = "Sign in", key = "sign in privileged")
-    public void logIn(String name, String password) {
-        userService.login(name, password);
+    public String logIn(String name, String password) {
+        return userService.login(name, password);
     }
 
     @ShellMethod(value = "Sign out", key = "sign out")
@@ -91,8 +91,8 @@ public class TicketServiceCommandHandler {
     }
 
     @ShellMethod(value = "List rooms", key = "list rooms")
-    public void listRooms() {
-        roomService.listRooms();
+    public String listRooms() {
+        return roomService.listRooms();
     }
 
     @ShellMethod(value = "Create screening", key = "create screening")
@@ -103,9 +103,17 @@ public class TicketServiceCommandHandler {
         screeningService.createScreening(new Screening(filmName, roomName, LocalDateTime.parse(start, formatter)));
     }
 
+    @ShellMethod(value = "Delete screening", key = "delete screening")
+    @ShellMethodAvailability(value = "isAdminLoggedIn")
+    public void deleteScreening(String filmName, String roomName, String start) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        screeningService.deleteScreening(new Screening(filmName, roomName, LocalDateTime.parse(start, formatter)));
+    }
+
     @ShellMethod(value = "List screenings", key = "list screenings")
-    public void listScreenings() {
-        screeningService.listScreenings();
+    public String listScreenings() {
+        return screeningService.listScreenings();
     }
 
 
