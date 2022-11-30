@@ -3,6 +3,7 @@
 <file name="D:\Java_fej\epam-deik-java-dev\final\ticket-service\src\main\java\com\epam\training\Application.java">
 </file>
 <file name="D:\Java_fej\epam-deik-java-dev\final\ticket-service\src\main\java\com\epam\training\ticketservice\command\TicketServiceCommandHandler.java">
+<error line="103" severity="warning" message="Line is longer than 120 characters (found 122)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
 </file>
 <file name="D:\Java_fej\epam-deik-java-dev\final\ticket-service\src\main\java\com\epam\training\ticketservice\command\TicketServiceCommandPrompt.java">
 </file>
@@ -33,11 +34,12 @@
 <error line="68" column="87" severity="warning" message="&apos;||&apos; should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
 <error line="69" column="93" severity="warning" message="&apos;||&apos; should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
 <error line="70" column="95" severity="warning" message="&apos;||&apos; should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
-<error line="92" severity="warning" message="Line is longer than 120 characters (found 159)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="92" column="159" severity="warning" message="&apos;+&apos; should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
-<error line="101" severity="warning" message="Line is longer than 120 characters (found 152)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="102" severity="warning" message="Line is longer than 120 characters (found 162)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="104" severity="warning" message="&apos;else&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="71" column="93" severity="warning" message="&apos;||&apos; should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="93" severity="warning" message="Line is longer than 120 characters (found 159)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="93" column="159" severity="warning" message="&apos;+&apos; should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="102" severity="warning" message="Line is longer than 120 characters (found 152)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="103" severity="warning" message="Line is longer than 120 characters (found 162)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="105" severity="warning" message="&apos;else&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
 </file>
 <file name="D:\Java_fej\epam-deik-java-dev\final\ticket-service\src\main\java\com\epam\training\ticketservice\user\User.java">
 </file>

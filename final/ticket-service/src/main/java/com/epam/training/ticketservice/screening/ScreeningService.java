@@ -20,16 +20,17 @@ public class ScreeningService {
     private final RoomRepository roomRepository;
 
 
-    public void createScreening(Screening screening) {
+    public String createScreening(Screening screening) {
         if (movieRepository.existsById(screening.getFilmName()) && roomRepository.existsById(screening.getRoomName())) {
 
             List<Screening> screeningList = screeningRepository.findByRoomName(screening.getRoomName());
             if (isOverLapping(screeningList, screening)) {
-                System.out.println("There is an overlapping screening");
+                return ("There is an overlapping screening");
             } else if (isInBreak(screeningList, screening)) {
-                System.out.println("This would start in the break period after another screening in this room");
+                return ("This would start in the break period after another screening in this room");
             } else {
                 screeningRepository.save(screening);
+                return "User succesfully added";
             }
 
         } else {
@@ -38,9 +39,8 @@ public class ScreeningService {
 
     }
 
-    private boolean isInBreak(List<Screening> screeningList, Screening screening) {
+    public boolean isInBreak(List<Screening> screeningList, Screening screening) {
         boolean isInBreak = false;
-        int screeningLength = movieRepository.findById(screening.getFilmName()).get().getLength();
         LocalDateTime screeningStart = screening.getStart();
 
         for (var actual : screeningList) {
@@ -68,7 +68,8 @@ public class ScreeningService {
             if (screeningEnd.isAfter(actualStart) && screeningEnd.isBefore(actualEnd) ||
                     screeningStart.isAfter(actualStart) && screeningEnd.isBefore(actualEnd) ||
                     screeningStart.isAfter(actualStart) && screeningStart.isBefore(actualEnd) ||
-                    screeningStart.isBefore(actualStart) && screeningEnd.isAfter(actualEnd)
+                    screeningStart.isBefore(actualStart) && screeningEnd.isAfter(actualEnd) ||
+                    screeningStart.equals(actualStart) && screeningEnd.equals(actualEnd)
             ) {
                 isOverLapping = true;
             }
@@ -101,7 +102,7 @@ public class ScreeningService {
         if (screeningRepository.findByFilmNameAndRoomNameAndStart(screening.getFilmName(), screening.getRoomName(), screening.getStart()).isPresent()) {
             Long id = screeningRepository.findByFilmNameAndRoomNameAndStart(screening.getFilmName(), screening.getRoomName(), screening.getStart()).get().getId();
             screeningRepository.deleteById(id);
-        } else System.out.println("Screening not found");
+        } else System.out.print("Screening not found");
 
     }
 }

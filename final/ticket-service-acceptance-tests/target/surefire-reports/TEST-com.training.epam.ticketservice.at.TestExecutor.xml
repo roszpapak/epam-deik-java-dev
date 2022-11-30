@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="17" failures="0" name="com.training.epam.ticketservice.at.TestExecutor" time="111.82" errors="0" skipped="0">
+<testsuite tests="17" failures="0" name="com.training.epam.ticketservice.at.TestExecutor" time="119.114" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="11.0.16.1+1-LTS-1"/>
@@ -7,16 +7,16 @@
     <property name="maven.multiModuleProjectDirectory" value="D:\Java_fej\epam-deik-java-dev\final"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="https://openjdk.java.net/"/>
-    <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="sun.os.patch.level" value=""/>
-    <property name="user.script" value=""/>
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.script" value=""/>
+    <property name="sun.os.patch.level" value=""/>
     <property name="user.dir" value="D:\Java_fej\epam-deik-java-dev\final"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="java.runtime.version" value="11.0.16.1+1-LTS-1"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="os.arch" value="amd64"/>
@@ -41,8 +41,8 @@
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="file.encoding" value="Cp1252"/>
     <property name="java.specification.version" value="11"/>
-    <property name="user.name" value="roszp"/>
     <property name="java.class.path" value="D:\Download\apache-maven-3.8.6\boot\plexus-classworlds-2.6.0.jar"/>
+    <property name="user.name" value="roszp"/>
     <property name="java.vm.specification.version" value="11"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean verify -Prequirements-grade2"/>
@@ -58,28 +58,28 @@
     <property name="file.separator" value="\"/>
     <property name="java.version.date" value="2022-08-18"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
-    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.vendor.version" value="18.9"/>
     <property name="sun.stdout.encoding" value="cp437"/>
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="allow creating accounts and logging in" name="the admin account exists by default and can be logged in with the correct password" time="6.149"/>
-  <testcase classname="allow creating accounts and logging in" name="the admin account can be signed out" time="5.643"/>
-  <testcase classname="allow creating accounts and logging in" name="the admin account can not be logged in with incorrect password" time="6.041"/>
-  <testcase classname="allows creating movie descriptions" name="an admin user can create and list movies" time="6.199"/>
-  <testcase classname="allows creating movie descriptions" name="an admin user can update a movie" time="5.941"/>
-  <testcase classname="allows creating movie descriptions" name="an admin user can delete a movie" time="6.235"/>
-  <testcase classname="allows creating movie descriptions" name="an unauthenticated user can list movies" time="5.92"/>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can create and list rooms" time="5.891"/>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can update a room" time="5.903"/>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can delete a room" time="6.253"/>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an unauthenticated user can list rooms" time="6.219"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can create and query screenings" time="7.345"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create overlapping screenings in the same room" time="7.625"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create overlapping screenings in different rooms" time="7.46"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create screenings during a 10 minute long breaks after another screening in the same room" time="7.518"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create screenings even if there is a break after a screening in a different room" time="7.734"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can delete screenings" time="7.744"/>
+  <testcase classname="allow creating accounts and logging in" name="the admin account exists by default and can be logged in with the correct password" time="7.556"/>
+  <testcase classname="allow creating accounts and logging in" name="the admin account can be signed out" time="6.19"/>
+  <testcase classname="allow creating accounts and logging in" name="the admin account can not be logged in with incorrect password" time="5.949"/>
+  <testcase classname="allows creating movie descriptions" name="an admin user can create and list movies" time="8.028"/>
+  <testcase classname="allows creating movie descriptions" name="an admin user can update a movie" time="6.782"/>
+  <testcase classname="allows creating movie descriptions" name="an admin user can delete a movie" time="5.988"/>
+  <testcase classname="allows creating movie descriptions" name="an unauthenticated user can list movies" time="6.164"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can create and list rooms" time="5.672"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can update a room" time="7.269"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can delete a room" time="6.056"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an unauthenticated user can list rooms" time="5.901"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can create and query screenings" time="8.985"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create overlapping screenings in the same room" time="7.718"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create overlapping screenings in different rooms" time="7.532"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create screenings during a 10 minute long breaks after another screening in the same room" time="7.633"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create screenings even if there is a break after a screening in a different room" time="7.762"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can delete screenings" time="7.929"/>
 </testsuite>

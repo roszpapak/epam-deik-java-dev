@@ -14,8 +14,6 @@ public class RoomService {
     public void createRoom(Room room) {
         if (!roomRepository.findById(room.getName()).isPresent()) {
             roomRepository.save(room);
-        } else {
-            throw new IllegalArgumentException();
         }
     }
 
@@ -23,7 +21,7 @@ public class RoomService {
         if (roomRepository.findById(name).isPresent()) {
             roomRepository.save(new Room(name, numberOfRows, numberOfColumns));
         } else {
-            System.out.println("Room doest not exists");
+            System.out.print("Room does not exists");
         }
     }
 
@@ -31,7 +29,7 @@ public class RoomService {
         if (roomRepository.findById(name).isPresent()) {
             roomRepository.deleteById(name);
         } else {
-            System.out.println("Room does not exists");
+            System.out.print("Room does not exists");
         }
     }
 

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: com.training.epam.ticketservice.at.TestExecutor
+Test set: MovieServiceTest
 -------------------------------------------------------------------------------
-Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 119.613 sec
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.049 s - in MovieServiceTest

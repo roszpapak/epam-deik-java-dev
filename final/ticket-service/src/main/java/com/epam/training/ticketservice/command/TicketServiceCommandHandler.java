@@ -97,10 +97,10 @@ public class TicketServiceCommandHandler {
 
     @ShellMethod(value = "Create screening", key = "create screening")
     @ShellMethodAvailability(value = "isAdminLoggedIn")
-    public void createScreening(String filmName, String roomName, String start) {
+    public String createScreening(String filmName, String roomName, String start) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-        screeningService.createScreening(new Screening(filmName, roomName, LocalDateTime.parse(start, formatter)));
+        return screeningService.createScreening(new Screening(filmName, roomName, LocalDateTime.parse(start, formatter)));
     }
 
     @ShellMethod(value = "Delete screening", key = "delete screening")

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RoomService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ticket-service</a> &gt; <a href="index.source.html" class="el_package">com.epam.training.ticketservice.room</a> &gt; <span class="el_source">RoomService.java</span></div><h1>RoomService.java</h1><pre class="source lang-java linenums">package com.epam.training.ticketservice.room;
+
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+<span class="fc" id="L9">@AllArgsConstructor</span>
+public class RoomService {
+
+    private final RoomRepository roomRepository;
+
+    public void createRoom(Room room) {
+<span class="pc bpc" id="L15" title="1 of 2 branches missed.">        if (!roomRepository.findById(room.getName()).isPresent()) {</span>
+<span class="fc" id="L16">            roomRepository.save(room);</span>
+        }
+<span class="fc" id="L18">    }</span>
+
+    public void updateRoom(String name, Integer numberOfRows, Integer numberOfColumns) {
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        if (roomRepository.findById(name).isPresent()) {</span>
+<span class="fc" id="L22">            roomRepository.save(new Room(name, numberOfRows, numberOfColumns));</span>
+        } else {
+<span class="fc" id="L24">            System.out.print(&quot;Room does not exists&quot;);</span>
+        }
+<span class="fc" id="L26">    }</span>
+
+    public void deleteRoom(String name) {
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (roomRepository.findById(name).isPresent()) {</span>
+<span class="fc" id="L30">            roomRepository.deleteById(name);</span>
+        } else {
+<span class="fc" id="L32">            System.out.print(&quot;Room does not exists&quot;);</span>
+        }
+<span class="fc" id="L34">    }</span>
+
+    public String listRooms() {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (getRooms().isEmpty()) {</span>
+<span class="fc" id="L38">            return &quot;There are no rooms at the moment&quot;;</span>
+        } else {
+<span class="fc" id="L40">            String s = &quot;&quot;;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">            for (var room : getRooms()) {</span>
+<span class="fc" id="L42">                s += room.toString() + &quot;\n&quot;;</span>
+<span class="fc" id="L43">            }</span>
+<span class="fc" id="L44">            return s;</span>
+        }
+
+    }
+
+    public List&lt;Room&gt; getRooms() {
+<span class="fc" id="L50">        return roomRepository.findAll();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
