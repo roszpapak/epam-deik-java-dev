@@ -65,10 +65,14 @@ public class ScreeningService {
             LocalDateTime actualStart = actual.getStart();
             LocalDateTime actualEnd = actual.getStart().plusMinutes(actualLength);
 
-            if (screeningEnd.isAfter(actualStart) && screeningEnd.isBefore(actualEnd) ||
-                    screeningStart.isAfter(actualStart) && screeningEnd.isBefore(actualEnd) ||
-                    screeningStart.isAfter(actualStart) && screeningStart.isBefore(actualEnd) ||
-                    screeningStart.isBefore(actualStart) && screeningEnd.isAfter(actualEnd) ||
+            if (screeningEnd.isAfter(actualStart) && screeningEnd.isBefore(actualEnd)
+                    ||
+                    screeningStart.isAfter(actualStart) && screeningEnd.isBefore(actualEnd)
+                    ||
+                    screeningStart.isAfter(actualStart) && screeningStart.isBefore(actualEnd)
+                    ||
+                    screeningStart.isBefore(actualStart) && screeningEnd.isAfter(actualEnd)
+                    ||
                     screeningStart.equals(actualStart) && screeningEnd.equals(actualEnd)
             ) {
                 isOverLapping = true;
@@ -90,8 +94,9 @@ public class ScreeningService {
                 Movie movie = movieRepository.findById(screening.getFilmName()).get();
                 Room room = roomRepository.findById(screening.getRoomName()).get();
 
-                String text = movie.getName() + " (" + movie.getType() + ", " + movie.getLength() + " minutes), screened in room " + room.getName() + ", at " +
-                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(screening.getStart());
+                String text = movie.getName() + " (" + movie.getType() + ", "
+                        + movie.getLength() + " minutes), screened in room " + room.getName() + ", at "
+                        + DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(screening.getStart());
                 s += text + "\n";
             }
             return s;
@@ -99,10 +104,17 @@ public class ScreeningService {
     }
 
     public void deleteScreening(Screening screening) {
-        if (screeningRepository.findByFilmNameAndRoomNameAndStart(screening.getFilmName(), screening.getRoomName(), screening.getStart()).isPresent()) {
-            Long id = screeningRepository.findByFilmNameAndRoomNameAndStart(screening.getFilmName(), screening.getRoomName(), screening.getStart()).get().getId();
+        if (screeningRepository.findByFilmNameAndRoomNameAndStart(screening.getFilmName(),
+                screening.getRoomName(),
+                screening.getStart()).isPresent()) {
+            Long id = screeningRepository.findByFilmNameAndRoomNameAndStart(screening.getFilmName(),
+                    screening.getRoomName(),
+                    screening.getStart()).get().getId();
+
             screeningRepository.deleteById(id);
-        } else System.out.print("Screening not found");
+        } else {
+            System.out.print("Screening not found");
+        }
 
     }
 }

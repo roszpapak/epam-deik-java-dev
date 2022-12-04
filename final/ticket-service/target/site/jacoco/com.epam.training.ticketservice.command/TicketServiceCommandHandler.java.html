@@ -100,28 +100,29 @@ public class TicketServiceCommandHandler {
     public String createScreening(String filmName, String roomName, String start) {
 <span class="fc" id="L101">        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm&quot;);</span>
 
-<span class="fc" id="L103">        return screeningService.createScreening(new Screening(filmName, roomName, LocalDateTime.parse(start, formatter)));</span>
+<span class="fc" id="L103">        return screeningService.createScreening(</span>
+<span class="fc" id="L104">                new Screening(filmName, roomName, LocalDateTime.parse(start, formatter)));</span>
     }
 
     @ShellMethod(value = &quot;Delete screening&quot;, key = &quot;delete screening&quot;)
     @ShellMethodAvailability(value = &quot;isAdminLoggedIn&quot;)
     public void deleteScreening(String filmName, String roomName, String start) {
-<span class="nc" id="L109">        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm&quot;);</span>
+<span class="nc" id="L110">        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm&quot;);</span>
 
-<span class="nc" id="L111">        screeningService.deleteScreening(new Screening(filmName, roomName, LocalDateTime.parse(start, formatter)));</span>
-<span class="nc" id="L112">    }</span>
+<span class="nc" id="L112">        screeningService.deleteScreening(new Screening(filmName, roomName, LocalDateTime.parse(start, formatter)));</span>
+<span class="nc" id="L113">    }</span>
 
     @ShellMethod(value = &quot;List screenings&quot;, key = &quot;list screenings&quot;)
     public String listScreenings() {
-<span class="fc" id="L116">        return screeningService.listScreenings();</span>
+<span class="fc" id="L117">        return screeningService.listScreenings();</span>
     }
 
 
     private Availability isAdminLoggedIn() {
-<span class="nc bnc" id="L121" title="All 2 branches missed.">        if (userService.isAdminLoggedIn()) {</span>
-<span class="nc" id="L122">            return Availability.available();</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">        if (userService.isAdminLoggedIn()) {</span>
+<span class="nc" id="L123">            return Availability.available();</span>
         } else {
-<span class="nc" id="L124">            return Availability.unavailable(&quot;You are not logged in as admin&quot;);</span>
+<span class="nc" id="L125">            return Availability.unavailable(&quot;You are not logged in as admin&quot;);</span>
         }
     }
 

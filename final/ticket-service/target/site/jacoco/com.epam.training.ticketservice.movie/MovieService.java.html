@@ -14,41 +14,47 @@ public class MovieService {
     public void createMovie(Movie movie) {
 <span class="pc bpc" id="L15" title="1 of 2 branches missed.">        if (movieRepository.findById(movie.getName()).isEmpty()) {</span>
 <span class="fc" id="L16">            movieRepository.save(movie);</span>
-<span class="nc" id="L17">        } else throw new IllegalArgumentException(&quot;Film already exists&quot;);</span>
+        } else {
+<span class="nc" id="L18">            throw new IllegalArgumentException(&quot;Film already exists&quot;);</span>
+        }
 
 
-<span class="fc" id="L20">    }</span>
+<span class="fc" id="L22">    }</span>
 
     public List&lt;Movie&gt; getMovies() {
-<span class="fc" id="L23">        return movieRepository.findAll();</span>
+<span class="fc" id="L25">        return movieRepository.findAll();</span>
     }
 
     public String listMovies() {
-<span class="pc bpc" id="L27" title="1 of 2 branches missed.">        if (getMovies().isEmpty()) {</span>
-<span class="fc" id="L28">            return (&quot;There are no movies at the moment&quot;);</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">        if (getMovies().isEmpty()) {</span>
+<span class="fc" id="L30">            return (&quot;There are no movies at the moment&quot;);</span>
         } else {
-<span class="nc" id="L30">            String s = &quot;&quot;;</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">            for (var film : getMovies()) {</span>
-<span class="nc" id="L32">                s += film.toString() + &quot;\n&quot;;</span>
-<span class="nc" id="L33">            }</span>
-<span class="nc" id="L34">            return s;</span>
+<span class="nc" id="L32">            String s = &quot;&quot;;</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            for (var film : getMovies()) {</span>
+<span class="nc" id="L34">                s += film.toString() + &quot;\n&quot;;</span>
+<span class="nc" id="L35">            }</span>
+<span class="nc" id="L36">            return s;</span>
         }
     }
 
     public void updateMovie(String name, String type, Integer length) {
-<span class="pc bpc" id="L39" title="1 of 2 branches missed.">        if (movieRepository.findById(name).isPresent()) {</span>
-<span class="fc" id="L40">            Movie movie = movieRepository.findById(name).get();</span>
-<span class="fc" id="L41">            movie.setType(type);</span>
-<span class="fc" id="L42">            movie.setLength(length);</span>
-<span class="fc" id="L43">            movieRepository.save(movie);</span>
-<span class="pc" id="L44">        } else throw new IllegalArgumentException(&quot;Movie not found&quot;);</span>
-<span class="fc" id="L45">    }</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (movieRepository.findById(name).isPresent()) {</span>
+<span class="fc" id="L42">            Movie movie = movieRepository.findById(name).get();</span>
+<span class="fc" id="L43">            movie.setType(type);</span>
+<span class="fc" id="L44">            movie.setLength(length);</span>
+<span class="fc" id="L45">            movieRepository.save(movie);</span>
+<span class="fc" id="L46">        } else {</span>
+<span class="nc" id="L47">            throw new IllegalArgumentException(&quot;Movie not found&quot;);</span>
+        }
+<span class="fc" id="L49">    }</span>
 
     public void deleteMovie(String name) {
-<span class="pc bpc" id="L48" title="1 of 2 branches missed.">        if (movieRepository.findById(name).isPresent()) {</span>
-<span class="fc" id="L49">            movieRepository.deleteById(name);</span>
-<span class="nc" id="L50">        } else System.out.println(&quot;Film not found&quot;);</span>
-<span class="fc" id="L51">    }</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        if (movieRepository.findById(name).isPresent()) {</span>
+<span class="fc" id="L53">            movieRepository.deleteById(name);</span>
+        } else {
+<span class="nc" id="L55">            System.out.println(&quot;Film not found&quot;);</span>
+        }
+<span class="fc" id="L57">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

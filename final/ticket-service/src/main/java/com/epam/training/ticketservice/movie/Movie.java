@@ -1,7 +1,6 @@
 package com.epam.training.ticketservice.movie;
 
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +23,6 @@ public class Movie {
 
     @Override
     public String toString() {
-        return name + " (" +type + ", " + length + " minutes)";
+        return name + " (" + type + ", " + length + " minutes)";
     }
 }

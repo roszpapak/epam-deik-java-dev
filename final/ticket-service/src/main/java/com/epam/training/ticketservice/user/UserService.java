@@ -14,20 +14,26 @@ public class UserService {
 
             userRepository.save(new User(name, password));
             return "Signed in with privileged account 'admin'";
-        } else return "Login failed due to incorrect credentials";
+        } else {
+            return "Login failed due to incorrect credentials";
+        }
     }
 
     public void signOut() {
         if (userRepository.findByNameAndPassword("admin", "admin").isPresent()) {
             userRepository.delete(userRepository.findByNameAndPassword("admin", "admin").get());
-        } else System.out.println("You are not signed in");
+        } else {
+            System.out.println("You are not signed in");
+        }
     }
 
 
     public String describeAccount() {
         if (userRepository.findByNameAndPassword("admin", "admin").isPresent()) {
             return "Signed in with privileged account 'admin'";
-        } else return "You are not signed in";
+        } else {
+            return "You are not signed in";
+        }
     }
 
     public boolean isAdminLoggedIn() {

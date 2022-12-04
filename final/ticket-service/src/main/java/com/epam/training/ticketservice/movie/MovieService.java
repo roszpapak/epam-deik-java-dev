@@ -14,7 +14,9 @@ public class MovieService {
     public void createMovie(Movie movie) {
         if (movieRepository.findById(movie.getName()).isEmpty()) {
             movieRepository.save(movie);
-        } else throw new IllegalArgumentException("Film already exists");
+        } else {
+            throw new IllegalArgumentException("Film already exists");
+        }
 
 
     }
@@ -41,13 +43,17 @@ public class MovieService {
             movie.setType(type);
             movie.setLength(length);
             movieRepository.save(movie);
-        } else throw new IllegalArgumentException("Movie not found");
+        } else {
+            throw new IllegalArgumentException("Movie not found");
+        }
     }
 
     public void deleteMovie(String name) {
         if (movieRepository.findById(name).isPresent()) {
             movieRepository.deleteById(name);
-        } else System.out.println("Film not found");
+        } else {
+            System.out.println("Film not found");
+        }
     }
 
 }

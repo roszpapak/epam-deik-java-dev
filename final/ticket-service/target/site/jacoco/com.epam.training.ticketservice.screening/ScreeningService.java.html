@@ -65,45 +65,57 @@ public class ScreeningService {
 <span class="fc" id="L65">            LocalDateTime actualStart = actual.getStart();</span>
 <span class="fc" id="L66">            LocalDateTime actualEnd = actual.getStart().plusMinutes(actualLength);</span>
 
-<span class="pc bpc" id="L68" title="2 of 4 branches missed.">            if (screeningEnd.isAfter(actualStart) &amp;&amp; screeningEnd.isBefore(actualEnd) ||</span>
-<span class="pc bpc" id="L69" title="3 of 4 branches missed.">                    screeningStart.isAfter(actualStart) &amp;&amp; screeningEnd.isBefore(actualEnd) ||</span>
-<span class="pc bpc" id="L70" title="3 of 4 branches missed.">                    screeningStart.isAfter(actualStart) &amp;&amp; screeningStart.isBefore(actualEnd) ||</span>
-<span class="pc bpc" id="L71" title="3 of 4 branches missed.">                    screeningStart.isBefore(actualStart) &amp;&amp; screeningEnd.isAfter(actualEnd) ||</span>
-<span class="pc bpc" id="L72" title="2 of 4 branches missed.">                    screeningStart.equals(actualStart) &amp;&amp; screeningEnd.equals(actualEnd)</span>
+<span class="pc bpc" id="L68" title="2 of 4 branches missed.">            if (screeningEnd.isAfter(actualStart) &amp;&amp; screeningEnd.isBefore(actualEnd)</span>
+                    ||
+<span class="pc bpc" id="L70" title="3 of 4 branches missed.">                    screeningStart.isAfter(actualStart) &amp;&amp; screeningEnd.isBefore(actualEnd)</span>
+                    ||
+<span class="pc bpc" id="L72" title="3 of 4 branches missed.">                    screeningStart.isAfter(actualStart) &amp;&amp; screeningStart.isBefore(actualEnd)</span>
+                    ||
+<span class="pc bpc" id="L74" title="3 of 4 branches missed.">                    screeningStart.isBefore(actualStart) &amp;&amp; screeningEnd.isAfter(actualEnd)</span>
+                    ||
+<span class="pc bpc" id="L76" title="2 of 4 branches missed.">                    screeningStart.equals(actualStart) &amp;&amp; screeningEnd.equals(actualEnd)</span>
             ) {
-<span class="fc" id="L74">                isOverLapping = true;</span>
+<span class="fc" id="L78">                isOverLapping = true;</span>
             }
-<span class="fc" id="L76">        }</span>
-<span class="fc" id="L77">        return isOverLapping;</span>
+<span class="fc" id="L80">        }</span>
+<span class="fc" id="L81">        return isOverLapping;</span>
     }
 
     public List&lt;Screening&gt; getScreenings() {
-<span class="fc" id="L81">        return screeningRepository.findAll();</span>
+<span class="fc" id="L85">        return screeningRepository.findAll();</span>
     }
 
     public String listScreenings() {
-<span class="fc bfc" id="L85" title="All 2 branches covered.">        if (getScreenings().isEmpty()) {</span>
-<span class="fc" id="L86">            return (&quot;There are no screenings&quot;);</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        if (getScreenings().isEmpty()) {</span>
+<span class="fc" id="L90">            return (&quot;There are no screenings&quot;);</span>
         } else {
-<span class="fc" id="L88">            String s = &quot;&quot;;</span>
-<span class="fc bfc" id="L89" title="All 2 branches covered.">            for (var screening : getScreenings()) {</span>
-<span class="fc" id="L90">                Movie movie = movieRepository.findById(screening.getFilmName()).get();</span>
-<span class="fc" id="L91">                Room room = roomRepository.findById(screening.getRoomName()).get();</span>
+<span class="fc" id="L92">            String s = &quot;&quot;;</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">            for (var screening : getScreenings()) {</span>
+<span class="fc" id="L94">                Movie movie = movieRepository.findById(screening.getFilmName()).get();</span>
+<span class="fc" id="L95">                Room room = roomRepository.findById(screening.getRoomName()).get();</span>
 
-<span class="fc" id="L93">                String text = movie.getName() + &quot; (&quot; + movie.getType() + &quot;, &quot; + movie.getLength() + &quot; minutes), screened in room &quot; + room.getName() + &quot;, at &quot; +</span>
-<span class="fc" id="L94">                        DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm&quot;).format(screening.getStart());</span>
-<span class="fc" id="L95">                s += text + &quot;\n&quot;;</span>
-<span class="fc" id="L96">            }</span>
-<span class="fc" id="L97">            return s;</span>
+<span class="fc" id="L97">                String text = movie.getName() + &quot; (&quot; + movie.getType() + &quot;, &quot;</span>
+<span class="fc" id="L98">                        + movie.getLength() + &quot; minutes), screened in room &quot; + room.getName() + &quot;, at &quot;</span>
+<span class="fc" id="L99">                        + DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm&quot;).format(screening.getStart());</span>
+<span class="fc" id="L100">                s += text + &quot;\n&quot;;</span>
+<span class="fc" id="L101">            }</span>
+<span class="fc" id="L102">            return s;</span>
         }
     }
 
     public void deleteScreening(Screening screening) {
-<span class="fc bfc" id="L102" title="All 2 branches covered.">        if (screeningRepository.findByFilmNameAndRoomNameAndStart(screening.getFilmName(), screening.getRoomName(), screening.getStart()).isPresent()) {</span>
-<span class="fc" id="L103">            Long id = screeningRepository.findByFilmNameAndRoomNameAndStart(screening.getFilmName(), screening.getRoomName(), screening.getStart()).get().getId();</span>
-<span class="fc" id="L104">            screeningRepository.deleteById(id);</span>
-<span class="fc" id="L105">        } else System.out.print(&quot;Screening not found&quot;);</span>
+<span class="fc" id="L107">        if (screeningRepository.findByFilmNameAndRoomNameAndStart(screening.getFilmName(),</span>
+<span class="fc" id="L108">                screening.getRoomName(),</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">                screening.getStart()).isPresent()) {</span>
+<span class="fc" id="L110">            Long id = screeningRepository.findByFilmNameAndRoomNameAndStart(screening.getFilmName(),</span>
+<span class="fc" id="L111">                    screening.getRoomName(),</span>
+<span class="fc" id="L112">                    screening.getStart()).get().getId();</span>
 
-<span class="fc" id="L107">    }</span>
+<span class="fc" id="L114">            screeningRepository.deleteById(id);</span>
+<span class="fc" id="L115">        } else {</span>
+<span class="fc" id="L116">            System.out.print(&quot;Screening not found&quot;);</span>
+        }
+
+<span class="fc" id="L119">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
